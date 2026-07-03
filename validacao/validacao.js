@@ -1,57 +1,57 @@
-function validaNome(Nome) {
-    Nome = Nome.trim()
+function validaNome(nome) {
+    nome = nome.trim()
 
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\-.'/()]{2,100}$/;
-    return regex.test(Nome)
+    return regex.test(nome)
 }
 
-function validaCategoria(Categoria) {
-    Categoria = Categoria.trim();
+function validaCategoria(categoria) {
+    categoria = categoria.trim();
 
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-']{2,50}$/;
-    return regex.test(Categoria)
+    return regex.test(categoria)
 }
 
-function validaQuantidade(Quantidade) {
-    Quantidade = Number(Quantidade);
+function validaQuantidade(quantidade) {
+    quantidade = Number(quantidade);
 
-    return Number.isInteger(Quantidade) && Quantidade >= 0;
+    return Number.isInteger(quantidade) && quantidade >= 0;
 }
 
-function validaValidade(Validade) {
+function validaValidade(validade) {
     const regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-    return regex.test(Validade)
+    return regex.test(validade)
 }
 
 
-export function validaProdutos(Nome, Categoria, Quantidade, Validade){
-    const nome = validaNome(Nome);
-    const categoria = validaCategoria(Categoria);
-    const quantidade = validaQuantidade(Quantidade);
-    const validade =  validaValidade(Validade);
+export function validaProdutos(nome, categoria, quantidade, validade){
+    const nomeValido = validaNome(nome);
+    const categoriaValida = validaCategoria(categoria);
+    const quantidadeValida = validaQuantidade(quantidade);
+    const validadeValida =  validaValidade(validade);
 
-    if(!nome) {
+    if(!nomeValido) {
         return {
             status: false,
             mensagem: "Nome inválido"
         }
     }
 
-    if(!categoria){
+    if(!categoriaValida){
         return {
             status: false,
             mensagem: "Categoria inválida"
         }
     }
 
-    if(!quantidade){
+    if(!quantidadeValida){
         return {
             status: false,
             mensagem: "Quantidade inválida"
         }
     }
 
-    if(!validade){
+    if(!validadeValida){
         return {
             status: false,
             mensagem: "Validade inválida"

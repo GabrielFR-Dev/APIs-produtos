@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { CadastraProdutos } from './servico/cadastraProdutos.js';
+import { validaProdutos } from './validacao/validacao.js'
 
 
 const app = express();
@@ -15,10 +16,15 @@ app.post('/cadastrar', async(req, res) => {
     const quantidade = req.body.quantidade;
     const validade = req.body.validade;
 
-    await CadastraProdutos(nome, categoria, quantidade, validade);
+   const campoValido = validaProdutos(nome, categoria, quantidade, validade)
 
-    res.status(201).send({ mensagem: "Produto cadastrado com sucesso"})
-
+     if (campoValido.status) {
+        await CadastraProdutos(nome, categoria, quantidade, validade);
+        res.status(201).send({ mensagem: "Usuário cadastrado com sucesso" });
+    }
+    else {
+        res.status(400).send({ mensagem: usuarioValido.mensagem })
+    }
 
 })
 
