@@ -54,7 +54,7 @@ app.post('/produtos', async (req, res) => {
 
     if (campoValido.status) {
         await CadastraProdutos(nome, categoria, quantidade, validade);
-        res.status(201).send({ mensagem: "Usuário cadastrado com sucesso" });
+        res.status(201).send({ mensagem: "Produto cadastrado com sucesso !! " });
     }
     else {
         res.status(400).send({ mensagem: campoValido.mensagem })
