@@ -13,7 +13,7 @@ app.use(express.json());
 app.get('/produtos', async(req, res) => {
     
     const produtos = await RetornaProdutos();
-    res.status(201).json(produtos);
+    res.status(200).json(produtos);
 
 })
 
@@ -22,7 +22,7 @@ app.get('/produtos/:id', async(req, res) => {
     const usuariosId = await RetornaProdutosId(id);
 
     if(usuariosId.length > 0 ){
-        res.status(201).json(usuariosId)
+        res.status(200).json(usuariosId)
     }
     else {
         res.status(404).send({mensagem: "Produto não encontrado"})
