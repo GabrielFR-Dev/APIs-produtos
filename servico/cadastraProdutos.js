@@ -13,8 +13,8 @@ export async function CadastraProdutos(Nome, Categoria, Quantidade, Validade){
 export async function ProdutoExiste(Nome){
     const conexao = await pool.getConnection();
 
-    const query = await conexao.query('SELECT id FROM produtos WHERE Nome ?', [Nome]);
+    const [rows] = await conexao.query('SELECT id FROM produtos WHERE Nome = ?', [Nome]);
     conexao.release();
 
-    return query.length > 0;
+    return rows.length > 0;
 }

@@ -1,4 +1,6 @@
 function validaNome(nome) {
+    if (typeof nome !== 'string') return false;
+
     nome = nome.trim()
 
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9\s\-.'/()]{2,100}$/;
@@ -6,6 +8,8 @@ function validaNome(nome) {
 }
 
 function validaCategoria(categoria) {
+    if (typeof categoria !== 'string') return false;
+
     categoria = categoria.trim();
 
     const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s\-']{2,50}$/;
@@ -13,12 +17,16 @@ function validaCategoria(categoria) {
 }
 
 function validaQuantidade(quantidade) {
+    if (quantidade === null || quantidade === undefined) return false;
+
     quantidade = Number(quantidade);
 
     return Number.isInteger(quantidade) && quantidade >= 0;
 }
 
 function validaValidade(validade) {
+    if (typeof validade !== 'string') return false;
+
     const regex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     return regex.test(validade)
 }

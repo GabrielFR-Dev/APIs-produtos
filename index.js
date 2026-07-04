@@ -31,7 +31,7 @@ app.get('/produtos/:id', async (req, res) => {
 })
 
 
-app.post('/cadastrar', async (req, res) => {
+app.post('/produtos', async (req, res) => {
     const nome = req.body.nome;
     const categoria = req.body.categoria;
     const quantidade = req.body.quantidade;
