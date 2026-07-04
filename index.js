@@ -2,12 +2,20 @@ import express from 'express';
 import cors from 'cors';
 import { CadastraProdutos } from './servico/cadastraProdutos.js';
 import { validaProdutos } from './validacao/validacao.js'
+import { RetornaProdutos } from './servico/retornaProdutos.js';
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+app.get('/produtos', async(req, res) => {
+    
+    const produtos = await RetornaProdutos();
+    res.status(201).json(produtos);
+
+})
 
 
 app.post('/cadastrar', async(req, res) => {

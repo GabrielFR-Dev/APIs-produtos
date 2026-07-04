@@ -10,3 +10,13 @@ export async function RetornaProdutos(){
     conexao.release();
     return query_resultado;
 }
+
+
+export async function RetornaProdutosId(id){
+    const conexao = await pool.getConnection();
+
+    const query = await conexao.query('SELECT Nome, Categoria, Quantidade, Validade FROM produtos WHERE Id = ?', [id]);
+    
+    conexao.release()
+    return query[0]
+}
