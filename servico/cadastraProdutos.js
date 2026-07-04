@@ -9,3 +9,12 @@ export async function CadastraProdutos(Nome, Categoria, Quantidade, Validade){
     console.log(query);
     conexao.release();
 }
+
+export async function ProdutoExiste(Nome){
+    const conexao = await pool.getConnection();
+
+    const query = await conexao.query('SELECT id FROM produtos WHERE Nome ?', [Nome]);
+    conexao.release();
+
+    return query.length > 0;
+}
