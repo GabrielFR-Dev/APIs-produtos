@@ -16,7 +16,7 @@ export async function RetornaProdutos(categoria) {
 
 
     conexao.release();
-    return produtos;
+    return produtos[0];
 }
 
 
