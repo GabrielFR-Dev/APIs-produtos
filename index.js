@@ -13,7 +13,15 @@ app.use(express.json());
 app.get('/produtos', async (req, res) => {
     const categoria = req.query.categoria
     const produtos = await RetornaProdutos(categoria);
+    
+    if(produtos.length === 0) {
+        return res.status(404).json({mensagem: "Nenhum produto encontrado nessa categoria."})
+    }
+    
     res.status(200).json(produtos);
+
+
+
 
 })
 
