@@ -23,7 +23,7 @@ app.post('/cadastrar', async(req, res) => {
         res.status(201).send({ mensagem: "Usuário cadastrado com sucesso" });
     }
     else {
-        res.status(400).send({ mensagem: usuarioValido.mensagem })
+        res.status(400).send({ mensagem: campoValido.mensagem })
     }
 
 })
