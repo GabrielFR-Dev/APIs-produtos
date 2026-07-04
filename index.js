@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { CadastraProdutos } from './servico/cadastraProdutos.js';
 import { validaProdutos } from './validacao/validacao.js'
-import { RetornaProdutos } from './servico/retornaProdutos.js';
+import { RetornaProdutos, RetornaProdutosId } from './servico/retornaProdutos.js';
 
 
 const app = express();
@@ -14,6 +14,19 @@ app.get('/produtos', async(req, res) => {
     
     const produtos = await RetornaProdutos();
     res.status(201).json(produtos);
+
+})
+
+app.get('/produtos/:id', async(req, res) => {
+    const id = parseInt(req.params.id)
+    const usuariosId = await RetornaProdutosId(id);
+
+    if(usuariosId.length > 0 ){
+        res.status(201).json(usuariosId)
+    }
+    else {
+        res.status(404).send({mensagem: "Produto não encontrado"})
+    }
 
 })
 
