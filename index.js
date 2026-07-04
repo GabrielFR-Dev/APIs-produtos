@@ -11,8 +11,8 @@ app.use(express.json());
 
 
 app.get('/produtos', async(req, res) => {
-    
-    const produtos = await RetornaProdutos();
+    const categoria = req.query.categoria
+    const produtos = await RetornaProdutos(categoria);
     res.status(200).json(produtos);
 
 })
